@@ -1,4 +1,5 @@
 import {quizes} from "./Quizes";
+import navigation from "../Infrastructure/Navigation";
 
 export class Choose
 {
@@ -10,6 +11,6 @@ export class Choose
     }
 
     start(quiz) {
-        
+        navigation.goTo("Quiz/Game");
     }
 }
