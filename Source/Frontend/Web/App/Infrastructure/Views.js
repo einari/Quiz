@@ -30,6 +30,7 @@ class Views
             
             var viewModelType = modules[1][filename];
             var viewModel = new viewModelType();
+            ko.cleanNode(element);
             ko.applyBindings(viewModel, element);
             self.handleElement(element);
         });
