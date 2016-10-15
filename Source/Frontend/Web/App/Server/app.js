@@ -1,11 +1,15 @@
 import https from "https";
 import express from "express";
+import Quizes from "./Quizes";
 
 let app = express();
 app.get("/server/*", (request, response, next) => {
     response.status(404);
     response.end();
 });
+
+new Quizes(app);
+
 
 app.use(express.static(__dirname+"/../"));
 

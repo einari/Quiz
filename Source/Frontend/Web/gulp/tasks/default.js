@@ -26,6 +26,9 @@ gulp.task("default", () => {
     runSequence("build", ["server", "watch"]);
 });
 
+gulp.task("quick", () => {
+    runSequence(["server", "watch"]);
+});
 
 
 export default {
