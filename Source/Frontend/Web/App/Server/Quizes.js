@@ -1,5 +1,4 @@
-export default class Quizes
-{
+export default class Quizes {
     constructor(express) {
         let self = this;
 
@@ -14,7 +13,19 @@ export default class Quizes
     getAll() {
         let promise = new Promise((resolve, reject) => {
             resolve([
-                { title: "Magical quiz", description: "This is the awesome one" },
+                {
+                    id: 42, title: "Magical quiz", description: "This is the awesome one", questions: [
+                        {
+                            question: "Name all magicians", options: [
+                                { text: "Lord Vader", isCorrect: false },
+                                { text: "El Presidento", isCorrect: false },
+                                { text: "David Blaine", isCorrect: true },
+                                { text: "David Copperfield", isCorrect: true }
+                            ]
+                        }
+
+                    ]
+                },
                 { title: "Magical quiz", description: "This is the awesome one" },
                 { title: "Magical quiz", description: "This is the awesome one" },
                 { title: "Magical quiz", description: "This is the awesome one" }
