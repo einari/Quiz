@@ -1,0 +1,21 @@
+<h1>Quiz</h1>
+<h2 data-bind="text: quiz().title"></h2>
+
+<div class="container" data-bind="with: currentQuestion">
+	<div class="row">
+
+		<h3 data-bind="text: question"></h3>
+		<!-- ko foreach: options -->
+		<div class="input-group">
+			<span class="input-group-addon">
+                <input type="checkbox" aria-label="...">
+            </span>
+			<input type="text" class="form-control" aria-label="..." data-bind="value: text">
+            
+		</div>
+		<br>
+		<!-- /ko -->
+        <button class="btn btn-primary" data-bind="visible: $parent.hasPrevious(), click: $parent.goToPreviousQuestion.bind($parent)">Previous</button>
+        <button class="btn btn-primary" data-bind="visible: $parent.hasNext(), click: $parent.goToNextQuestion.bind($parent)">Next</button>
+	</div>
+</div>
