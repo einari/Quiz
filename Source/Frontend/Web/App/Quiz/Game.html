@@ -1,21 +1,21 @@
 <h1>Quiz</h1>
 <h2 data-bind="text: quiz().title"></h2>
 
-<div class="container" data-bind="with: currentQuestion">
+<div class="container">
 	<div class="row">
 
-		<h3 data-bind="text: question"></h3>
-		<!-- ko foreach: options -->
+		<h3 data-bind="text: currentQuestion().question"></h3>
+		<!-- ko foreach: currentQuestionOptions -->
 		<div class="input-group">
 			<span class="input-group-addon">
-                <input type="checkbox" aria-label="...">
+                <input type="checkbox" data-bind="checked: selected">
             </span>
-			<input type="text" class="form-control" aria-label="..." data-bind="value: text">
-            
+			<div type="text" class="form-control" data-bind="text: text"></div>
 		</div>
 		<br>
 		<!-- /ko -->
-        <button class="btn btn-primary" data-bind="visible: $parent.hasPrevious(), click: $parent.goToPreviousQuestion.bind($parent)">Previous</button>
-        <button class="btn btn-primary" data-bind="visible: $parent.hasNext(), click: $parent.goToNextQuestion.bind($parent)">Next</button>
+        <button class="btn btn-primary" data-bind="visible: hasPrevious(), click: goToPreviousQuestion.bind($data)">Previous</button>
+        <button class="btn btn-primary" data-bind="visible: hasNext(), click: goToNextQuestion.bind($data)">Next</button>
+        <button class="btn btn-primary" data-bind="visible: isLastQuestion(), click: submitAnswers.bind($data)">Submit</button>
 	</div>
 </div>
