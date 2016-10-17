@@ -1,7 +1,15 @@
-#FROM ubuntu:14.04
-FROM microsoft/dotnet:1.0-core
-COPY bin/Debug/netcoreapp1.0/publish/. /app
-WORKDIR /app
-EXPOSE 5000/tcp
-CMD ["dotnet", "Web.dll", "--server.urls", "http://*:5000"]
-#ENTRYPOINT dotnet Web.dll --server.urls http://*:50000
+FROM node:argon
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package.json /usr/src/app
+
+# Bundle app source
+COPY ./wwwroot /usr/src/app
+COPY ./node_modules /usr/src/app/node_modules
+
+EXPOSE 3000
+CMD ["node", "Server/app.js"]

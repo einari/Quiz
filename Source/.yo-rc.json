@@ -1,0 +1,6 @@
+{
+  "generator-azuresfguest": {
+    "frameworkType": "Container",
+    "projName": "Game"
+  }
+}
