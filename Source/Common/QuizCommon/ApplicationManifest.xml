@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest  ApplicationTypeName="QuizCommonType" ApplicationTypeVersion="1.0.0"
+                      xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   
+   <Parameters>
+    <Parameter Name="Messaging_InstanceCount" DefaultValue="1" />
+   </Parameters>
+   
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="MessagingPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+   
+
+   <Policies>
+        <ContainerHostPolicies CodePackageRef="Messaging.code">
+            <PortBinding ContainerPort="5672" EndpointRef="MessagingPort"/>
+            <PortBinding ContainerPort="15672" EndpointRef="MessagingClusterPort"/>
+        </ContainerHostPolicies>
+   </Policies>
+
+      
+   <DefaultServices>
+      <Service Name="Messaging">
+         <StatelessService ServiceTypeName="MessagingType" InstanceCount="[Messaging_InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>
+   </DefaultServices>
+   
+</ApplicationManifest>

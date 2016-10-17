@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="MessagingPkg" Version="1.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+   <ServiceTypes>
+      <StatelessServiceType ServiceTypeName="MessagingType" UseImplicitHost="true">
+   </StatelessServiceType>
+   </ServiceTypes>
+   
+   <CodePackage Name="Messaging.code" Version="1.0.0">
+      <EntryPoint>
+         <ContainerHost>
+            <ImageName>rabbitmq:latest</ImageName>
+            <Commands></Commands>
+         </ContainerHost>
+      </EntryPoint>
+      <EnvironmentVariables> 
+      </EnvironmentVariables> 
+   </CodePackage>
+
+  <Resources>
+    <Endpoints>
+        <Endpoint Name="MessagingPort" Protocol="tcp" Port="5672" />
+        <Endpoint Name="MessagingClusterPort" Protocol="tcp" Port="15672" />
+    </Endpoints>
+  </Resources>     
+ </ServiceManifest>
