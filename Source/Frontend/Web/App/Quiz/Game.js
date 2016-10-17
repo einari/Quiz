@@ -16,13 +16,22 @@ export class Game {
                 },
                 {
                     id: 48,
-                    question: "Name all horses", options: [
+                    question: "Find the horse", options: [
                         { id: 48, text: "Horse man", isCorrect: false },
                         { id: 49, text: "El horso", isCorrect: false },
                         { id: 50, text: "David Horso", isCorrect: true },
-                        { id: 51, text: "David Copperfield", isCorrect: true }
+                        { id: 51, text: "David Copperfield", isCorrect: false }
                     ]
-                }
+                },
+                {
+                    id: 52,
+                    question: "Check all that applies", options: [
+                        { id: 53, text: "Water is heavy", isCorrect: false },
+                        { id: 54, text: "Water is fluid", isCorrect: true },
+                        { id: 55, text: "Water is transparent", isCorrect: true },
+                        { id: 56, text: "Water is solid", isCorrect: false }
+                    ]
+                },
             ]
         });
         //globalState.currentQuiz;
@@ -37,6 +46,16 @@ export class Game {
         this.currentQuestionOptions = ko.computed(() => {
             let options = self.currentQuestion().options;
             return options;
+        });
+
+        this.hasMultipleChoice = ko.computed(() => {
+            let numberOfOptions = 0;
+
+            self.currentQuestion().options.forEach(option => {
+                if( option.isCorrect ) numberOfOptions ++;
+            });
+
+            return numberOfOptions > 1;
         });
 
         this.isLastQuestion = ko.computed(() => self.currentQuestionIndex() == self.quiz().questions.length-1);
@@ -69,6 +88,22 @@ export class Game {
     }
 
     submitAnswers() {
+        let questionsAndAnswers = [];
 
+        this.quiz().questions.forEach(question => {
+            let questionAndAnswers = {
+                id: question.id,
+                answers: []
+            }; 
+
+            console.log(`Question : ${question.question}`);
+
+            question.options.forEach(option => {
+                if( option.selected() == true || option.selected() == "on") {
+                    questionAndAnswers.answers.push(option.id);
+                    console.log(`Answer : ${option.text}`)
+                }
+            });
+        });
     }
 }

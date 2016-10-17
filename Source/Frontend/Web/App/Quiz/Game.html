@@ -8,7 +8,13 @@
 		<!-- ko foreach: currentQuestionOptions -->
 		<div class="input-group">
 			<span class="input-group-addon">
+                <!-- ko if: $parent.hasMultipleChoice() -->
                 <input type="checkbox" data-bind="checked: selected">
+                <!-- /ko -->
+
+                <!-- ko if: !$parent.hasMultipleChoice() -->
+                <input type="radio" name="questionOption" data-bind="checked: selected">
+                <!-- /ko -->
             </span>
 			<div type="text" class="form-control" data-bind="text: text"></div>
 		</div>
