@@ -10,7 +10,7 @@
    <CodePackage Name="Messaging.code" Version="1.0.0">
       <EntryPoint>
          <ContainerHost>
-            <ImageName>rabbitmq:latest</ImageName>
+            <ImageName>rabbitmq:3-management</ImageName>
             <Commands></Commands>
          </ContainerHost>
       </EntryPoint>

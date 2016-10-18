@@ -1,4 +1,4 @@
-import rabbit from "rabbit.js";
+import amqp from "amqplib/callback_api";
 
 class QuizMessages
 {
@@ -8,13 +8,11 @@ class QuizMessages
             body: data
         };
 
-        let context = rabbit.createContext("amqp://192.168.50.50");
-        context.on("ready", () => {
-            let pub = context.socket("PUB");
-            pub.connect("events", () => {
-                let messageAsString = JSON.stringify(message);
-                pub.write(messageAsString, "utf8");
-                console.log(`Message published : ${messageAsString}`);
+        amqp.connect("amqp://192.168.50.50",(error, connection) => {
+            let channel = connection.createChannel((e,channel) => {
+                let exchangeName = "events";
+                channel.assertExchange(exchangeName, "fanout", { durable: false });
+                channel.publish(exchangeName, "", new Buffer(JSON.stringify(message)));
             });
         });
     }

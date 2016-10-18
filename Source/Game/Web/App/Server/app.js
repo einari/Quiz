@@ -2,7 +2,6 @@ import https from "https";
 import express from "express";
 import Quizes from "./Quizes";
 import Attempts from "./Attempts";
-import rabbit from "rabbit.js";
 import bodyParser from "body-parser";
 
 let app = express();
@@ -18,32 +17,6 @@ new Quizes(app);
 new Attempts(app);
 
 app.use(express.static(__dirname+"/../"));
-
-/*
-let context = rabbit.createContext("amqp://192.168.50.50");
-context.on("ready", () => {
-    console.log("Ready");
-    let pub = context.socket("PUB");
-    let sub = context.socket("SUB");
-
-    //sub.pipe(process.stdout);
-    sub.setEncoding("utf8");
-    sub.on("data", message => {
-        console.log(`Message : ${message}`);
-    });
-
-    sub.connect("events", () => {
-        pub.connect("events", () => {
-
-            app.get("/message", (request, response) => {
-                pub.write(JSON.stringify({weclome: `Time : ${new Date()}`}), "utf8");
-                response.status(200);
-                response.end();
-            })
-        });
-    });
-});
-*/
 
 /*
 var insertDocuments = function(db, callback) {

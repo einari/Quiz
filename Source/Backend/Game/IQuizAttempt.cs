@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Actors;
 
 namespace Game
 {
-    public interface IQuizAttempt
+    public interface IQuizAttempt : IActor
     {
-        Task Begin(Guid quiz, string user);
-        Task SubmitAnswer(Guid answer, IEnumerable<Guid> attemptedOptions);
-        Task End();
+        Task Start(Guid quiz, string user);
+        Task Submit(Guid answer, IEnumerable<Guid> attemptedOptions);
+        Task Conclude();
     }
 }

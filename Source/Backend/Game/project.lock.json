@@ -634,6 +634,32 @@
           "System.Xml.XDocument": "4.0.11"
         }
       },
+      "RabbitMQ.Client/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Console": "4.0.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.Linq": "4.1.0",
+          "System.Net.NameResolution": "4.0.0",
+          "System.Net.Security": "4.0.0",
+          "System.Net.Sockets": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Thread": "4.0.0",
+          "System.Threading.Timer": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.5/RabbitMQ.Client.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/RabbitMQ.Client.dll": {}
+        }
+      },
       "runtime.native.System/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -1612,7 +1638,11 @@
           "ref/netstandard1.3/System.Net.Security.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.6/System.Net.Security.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Net.Security.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -3161,6 +3191,17 @@
         "NETStandard.Library.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt"
+      ]
+    },
+    "RabbitMQ.Client/4.1.0": {
+      "sha512": "kRSynszpUNVgklJWK211sWMPtTUufexmgXtOD90hsqgT9YLACL/cb3+SPbb6sy8MwweNt71TkQFjOVjX3B0NOQ==",
+      "type": "package",
+      "path": "RabbitMQ.Client/4.1.0",
+      "files": [
+        "RabbitMQ.Client.4.1.0.nupkg.sha512",
+        "RabbitMQ.Client.nuspec",
+        "lib/net451/RabbitMQ.Client.dll",
+        "lib/netstandard1.5/RabbitMQ.Client.dll"
       ]
     },
     "runtime.native.System/4.0.0": {
@@ -7916,6 +7957,7 @@
       "Microsoft.NETCore.App >= 1.0.0",
       "Microsoft.ServiceFabric.Actors >= 0.6.0-preview-01",
       "Microsoft.ServiceFabric.Services >= 0.6.0-preview-01",
+      "RabbitMQ.Client >= 4.1.0",
       "System.Collections >= 4.0.11",
       "System.Console >= 4.0.0",
       "System.Diagnostics.Tracing >= 4.1.0",

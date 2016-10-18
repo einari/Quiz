@@ -1,4 +1,4 @@
 #!/bin/bash
 
-azure servicefabric application delete fabric:/Backend
-azure servicefabric application type unregister BackendType 1.0.0
+azure servicefabric application delete fabric:/QuizBackend
+azure servicefabric application type unregister QuizBackendType 1.0.0

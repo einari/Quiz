@@ -8,6 +8,7 @@
       <EntryPoint>
          <ExeHost>
             <Program>entryPoint.sh</Program>
+            <ConsoleRedirection FileRetentionCount="5" FileMaxSizeInKb="2048"></ConsoleRedirection>
          </ExeHost>
       </EntryPoint>
    </CodePackage>

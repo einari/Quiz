@@ -1,25 +1,35 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
 
 namespace Game
 {
-    [ActorService(Name="QuizAttempt")]
+    [ActorServiceAttribute(Name="Game")]
     [StatePersistence(StatePersistence.Persisted)]
-    public class QuizAttempt : Actor, IQuizAttempt
+    internal class QuizAttempt : Actor, IQuizAttempt
     {
-        public Task Begin(Guid quiz, string user)
+        public QuizAttempt(ActorService actorService, ActorId actorId) : base(actorService, actorId) 
+        {
+        }
+
+        protected override Task OnActivateAsync()
+        {
+            return Task.FromResult(0);
+        } 
+
+        Task IQuizAttempt.Conclude()
         {
             throw new NotImplementedException();
         }
 
-        public Task End()
+        Task IQuizAttempt.Start(Guid quiz, string user)
         {
             throw new NotImplementedException();
         }
 
-        public Task SubmitAnswer(Guid answer, IEnumerable<Guid> attemptedOptions)
+        Task IQuizAttempt.Submit(Guid answer, IEnumerable<Guid> attemptedOptions)
         {
             throw new NotImplementedException();
         }

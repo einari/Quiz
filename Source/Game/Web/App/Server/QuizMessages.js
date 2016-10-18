@@ -1,23 +1,22 @@
-import rabbit from "rabbit.js";
 
-class QuizMessages
-{
+import amqp from "amqplib/callback_api";
+
+class QuizMessages {
     constructor() {
-        let context = rabbit.createContext("amqp://192.168.50.50");
-        context.on("ready", () => {
-            let sub = context.socket("SUB");
+        amqp.connect("amqp://192.168.50.50", (error, connection) => {
+            console.log("Connected");
+            let channel = connection.createChannel((e, channel) => {
+                let exchangeName = "events";
 
-            console.log("Ready");
+                console.log("Channel setup");
 
-            sub.setEncoding("utf8");
-
-            sub.on("data", message => {
-                console.log(`Data ${message}`);
-            });
-
-            sub.connect("events", () => {
-                console.log("Connected");
-
+                channel.assertExchange(exchangeName, "fanout", { durable: false });
+                channel.assertQueue("", { exclusive: true }, (ee, q) => {
+                    channel.bindQueue(q.queue, exchangeName, "");
+                    channel.consume(q.queue, message => {
+                        console.log(`Message received : ${message.content.toString()}`);
+                    }, { noAck: true });
+                });
             });
         });
     }
@@ -28,16 +27,16 @@ class QuizMessages
             body: data
         };
 
-        let context = rabbit.createContext("amqp://192.168.50.50");
-        context.on("ready", () => {
-            let pub = context.socket("PUB");
-            pub.connect("events", () => {
-                let messageAsString = JSON.stringify(message);
-                pub.write(messageAsString, "utf8");
-                console.log(`Message published : ${messageAsString}`);
+        amqp.connect("amqp://192.168.50.50", (error, connection) => {
+            console.log("Connected");
+            let channel = connection.createChannel((e, channel) => {
+                let exchangeName = "events";
+                channel.assertExchange(exchangeName, "fanout", { durable: false });
+                channel.publish(exchangeName, "", new Buffer(JSON.stringify(message)));
             });
         });
     }
+
 
     attemptStarted(quiz, user) {
         this.publish("attemptStarted", {
