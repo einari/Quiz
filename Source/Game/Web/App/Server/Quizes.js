@@ -1,8 +1,10 @@
 import {quizMessages} from "./QuizMessages";
+import mongoClient from "mongodb";
 
 export default class Quizes {
     constructor(express) {
         let self = this;
+        quizMessages.quizAdded.subscribe(quiz => self.insert(quiz));
 
         express.get("/quizes", (request, response, next) => {
             self.getAll().then(all => {
@@ -11,29 +13,32 @@ export default class Quizes {
         });
     }
 
-    getAll() {
+    connect() {
         let promise = new Promise((resolve, reject) => {
-            resolve([
-                {
-                    id: 42, title: "Magical quiz", description: "This is the awesome one", questions: [
-                        {
-                            question: "Name all magicians", options: [
-                                { text: "Lord Vader", isCorrect: false },
-                                { text: "El Presidento", isCorrect: false },
-                                { text: "David Blaine", isCorrect: true },
-                                { text: "David Copperfield", isCorrect: true }
-                            ]
-                        }
-
-                    ]
-                },
-                { title: "Magical quiz", description: "This is the awesome one" },
-                { title: "Magical quiz", description: "This is the awesome one" },
-                { title: "Magical quiz", description: "This is the awesome one" }
-            ])
-
+            let mongoDbUrl = "mongodb://192.168.50.50:27017/myproject";
+            mongoClient.connect(mongoDbUrl, (error, db) => {
+                resolve(db);
+            });
         });
         return promise;
     }
 
+    insert(quiz) {
+        //console.log("Insert quiz: "+JSON.stringify(quiz));
+        this.connect().then(db => {
+            let quizesCollection = db.collection("Quizes");
+            quizesCollection.insert(quiz);
+        });
+    }
+
+    getAll() {
+        var self = this;
+        let promise = new Promise((resolve, reject) => {
+            self.connect().then(db => {
+                let quizesCollection = db.collection("Quizes");
+                quizesCollection.find({}).toArray((error, documents) => resolve(documents));
+            });
+        });
+        return promise;
+    }
 }

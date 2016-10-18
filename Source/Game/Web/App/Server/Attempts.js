@@ -6,14 +6,13 @@ export default class Attempts
         var self = this;
         express.post("/attempts", (request, response, next) => {
             console.log("Attempts");
-            self.start(request.body.quiz, request.body.user);
+            self.start(request.body.quiz, request.body.attempt, request.body.user);
         });
     }
 
 
-    start(quiz, user) {
-
-        quizMessages.attemptStarted(quiz, user);
+    start(quiz, attempt, user) {
+        quizMessages.attemptStarted(quiz, attempt, user);
     }
 
     submitAnswer(id, options) {

@@ -1,8 +1,27 @@
-
 import amqp from "amqplib/callback_api";
+
+const _callbacks = new WeakMap();
+
+class Event {
+    constructor() {
+        _callbacks.set(this,[]);
+    }
+
+    trigger(data) {
+        _callbacks.get(this).forEach(callback => callback(data));
+    }
+
+    subscribe(callback) {
+        _callbacks.get(this).push(callback);
+    }
+}
 
 class QuizMessages {
     constructor() {
+        var self = this;
+
+        this.quizAdded = new Event();
+
         amqp.connect("amqp://192.168.50.50", (error, connection) => {
             console.log("Connected");
             let channel = connection.createChannel((e, channel) => {
@@ -14,7 +33,11 @@ class QuizMessages {
                 channel.assertQueue("", { exclusive: true }, (ee, q) => {
                     channel.bindQueue(q.queue, exchangeName, "");
                     channel.consume(q.queue, message => {
-                        console.log(`Message received : ${message.content.toString()}`);
+                        let messageBody = JSON.parse(message.content.toString());
+                        
+                        if( self.hasOwnProperty(messageBody.type)) {
+                            self[messageBody.type].trigger(messageBody.body);
+                        }
                     }, { noAck: true });
                 });
             });
@@ -38,9 +61,10 @@ class QuizMessages {
     }
 
 
-    attemptStarted(quiz, user) {
+    attemptStarted(quiz, attempt, user) {
         this.publish("attemptStarted", {
             quiz: quiz,
+            attempt: attempt,
             user: user
         });
     }

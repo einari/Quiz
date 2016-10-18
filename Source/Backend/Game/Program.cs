@@ -45,14 +45,31 @@ namespace Game
                                 var messageAsString = Encoding.UTF8.GetString(body);
 
                                 dynamic message = JsonConvert.DeserializeObject(messageAsString);
-                                if( message.type == "attemptStarted" ) 
+                                Console.WriteLine(" [x] Received {0}", message);
+
+                                Console.WriteLine("Message type : " + message.type);
+                                if (message.type == "attemptStarted")
                                 {
-                                    Console.WriteLine("Starting an attempt");
-                                    var actor = ActorProxy.Create<IQuizAttempt>(new ActorId(Guid.NewGuid()), "fabric:/QuizBackend", "Game");
-                                    actor.Start(message.body.quiz, message.body.user);
+                                    try
+                                    {
+                                        var attempt = Guid.Parse(message.body.attempt.ToString());
+                                        var quiz = Guid.Parse(message.body.quiz.ToString());
+                                        var user = message.body.user.ToString();
+
+                                        Console.WriteLine("Starting an attempt: ");
+                                        Console.WriteLine($"  Attempt: {attempt}");
+                                        Console.WriteLine($"  Quiz : {quiz}");
+                                        Console.WriteLine($"  User : {user}");
+                                        var actor = ActorProxy.Create<IQuizAttempt>(new ActorId(attempt), "fabric:/QuizBackend", "Game");
+                                        actor.Start(quiz, user);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("Exception : " + ex);
+                                    }
                                 }
 
-                                Console.WriteLine(" [x] Received {0}", message);
+                                
                             };
 
                             channel.BasicConsume(queue: queueName,

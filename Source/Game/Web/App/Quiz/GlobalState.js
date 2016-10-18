@@ -2,6 +2,7 @@ class GlobalState
 {
     constructor() {
         this.currentQuiz = ko.observable();
+        this.currentAttempt = ko.observable();
     }
 
     get hasCurrentQuiz() {
