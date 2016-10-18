@@ -1,8 +1,15 @@
 import {quizMessages} from "./QuizMessages";
+import pg from "pg";
 
 export default class Quizes {
     constructor(express) {
         let self = this;
+
+        this.connect().then((pool,client) => {
+            console.log("Connected");
+            pool.query("CREATE TABLE IF NOT EXISTS quizes(id UUID, details JSON)");
+        });
+
 
         express.post("/quizes", (request, response, next) => {
             console.log("post");
@@ -23,35 +30,48 @@ export default class Quizes {
         });
     }
 
+    connect() {
+        var config = {
+            user: "postgres",
+            password: "mysecretpassword",
+            database: "postgres",
+            host: "192.168.50.50"
+        };
+        let promise = new Promise((resolve, reject) => {
+            var pool = new pg.Pool(config);
+            pool.connect((error, client, done) => {
+                resolve(pool, client);
+            });
+        });
+        return promise;
+    }
+
     create(quiz) {
         quizMessages.added(quiz);
+
+        this.connect().then((pool, client) => {
+            pool.query(`INSERT INTO quizes(id, details) values ('${quiz.id}','${JSON.stringify(quiz)}')`);
+        });
     }
 
     update(quiz) {
         quizMessages.updated(quiz);
+
+        this.connect().then((pool, client) => {
+            pool.query(`UPDATE quizes SET details='${JSON.stringify(quiz)}' WHERE id='${quiz.id}'`);
+        });
     }
 
     getAll() {
+        var self = this;
         let promise = new Promise((resolve, reject) => {
-            resolve([
-                {
-                    id: 42, title: "Magical quiz", description: "This is the awesome one", questions: [
-                        {
-                            question: "Name all magicians", options: [
-                                { text: "Lord Vader", isCorrect: false },
-                                { text: "El Presidento", isCorrect: false },
-                                { text: "David Blaine", isCorrect: true },
-                                { text: "David Copperfield", isCorrect: true }
-                            ]
-                        }
-
-                    ]
-                },
-                { title: "Magical quiz", description: "This is the awesome one" },
-                { title: "Magical quiz", description: "This is the awesome one" },
-                { title: "Magical quiz", description: "This is the awesome one" }
-            ])
-
+            self.connect().then((pool, client) => {
+                pool.query("SELECT details FROM quizes").then((result) => {
+                    let rows = [];
+                    result.rows.forEach(row => rows.push(row.details));
+                    resolve(rows);
+                });
+            });
         });
         return promise;
     }
