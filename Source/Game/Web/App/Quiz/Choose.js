@@ -35,7 +35,7 @@ export class Choose
         globalState.currentQuiz(quiz);
         globalState.currentAttempt(Guid.create());
         navigation.goTo("Quiz/Game");
-        attempts.start(quiz.id, globalState.currentAttempt(), "einar@dolittle.com");
+        attempts.start(quiz.id, globalState.currentAttempt(), globalState.userName());
     }
 
     setUsername() {
