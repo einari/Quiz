@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Quiz</title>
+
+    <link rel="stylesheet" href="Content/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div data-view="Structure/header"></div>
+        <div data-navigationframe="Quiz/Editor"></div>
+    </div>
+
+    <script src="jspm_packages/system.js"></script>
+    <script src="jspm.config.js"></script>
+
+    <script>
+        System.cacheBust = "?bust="+Date.now();
+        var systemLocate = System.locate;
+
+        System.locate = function (load) {
+            var System = this;
+            return Promise.resolve(systemLocate.call(this, load))
+                .then(function (address) {
+                    if (address.lastIndexOf("html.js") > -1) return address;
+                    return address + System.cacheBust;
+                });
+        };
+
+        Promise.all([
+            System.import("knockout"),
+            System.import("index.js"),
+            System.import("./Infrastructure/Views.js"),
+            System.import("./Infrastructure/NavigationFrame.js")
+        ]).then(function(modules) {
+            var index = new modules[1].index();
+            modules[0].applyBindings(index);
+            modules[2].default.handleElement(document.body);
+            modules[3].default.handleElement(document.body);
+        });
+    </script>
+</body>
+
+</html>
