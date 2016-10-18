@@ -21,6 +21,7 @@ class QuizMessages {
         var self = this;
 
         this.quizAdded = new Event();
+        this.quizUpdated = new Event();
 
         amqp.connect("amqp://192.168.50.50", (error, connection) => {
             console.log("Connected");

@@ -4,7 +4,8 @@ import mongoClient from "mongodb";
 export default class Quizes {
     constructor(express) {
         let self = this;
-        quizMessages.quizAdded.subscribe(quiz => self.insert(quiz));
+        quizMessages.quizAdded.subscribe(quiz => self.save(quiz));
+        quizMessages.quizUpdated.subscribe(quiz => self.save(quiz));
 
         express.get("/quizes", (request, response, next) => {
             self.getAll().then(all => {
@@ -23,11 +24,11 @@ export default class Quizes {
         return promise;
     }
 
-    insert(quiz) {
-        //console.log("Insert quiz: "+JSON.stringify(quiz));
+    save(quiz) {
+        console.log("Save quiz: "+JSON.stringify(quiz));
         this.connect().then(db => {
             let quizesCollection = db.collection("Quizes");
-            quizesCollection.insert(quiz);
+            quizesCollection.save(quiz);
         });
     }
 
