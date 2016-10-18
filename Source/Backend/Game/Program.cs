@@ -4,7 +4,10 @@ namespace Game
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.ServiceFabric.Actors;
+    using Microsoft.ServiceFabric.Actors.Client;
     using Microsoft.ServiceFabric.Actors.Runtime;
+    using Newtonsoft.Json;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Events;
 
@@ -39,10 +42,18 @@ namespace Game
                             consumer.Received += (model, ea) =>
                             {
                                 var body = ea.Body;
-                                var message = Encoding.UTF8.GetString(body);
+                                var messageAsString = Encoding.UTF8.GetString(body);
+
+                                dynamic message = JsonConvert.DeserializeObject(messageAsString);
+                                if( message.type == "attemptStarted" ) 
+                                {
+                                    Console.WriteLine("Starting an attempt");
+                                    var actor = ActorProxy.Create<IQuizAttempt>(new ActorId(Guid.NewGuid()), "fabric:/QuizBackend", "Game");
+                                    actor.Start(message.body.quiz, message.body.user);
+                                }
+
                                 Console.WriteLine(" [x] Received {0}", message);
                             };
-
 
                             channel.BasicConsume(queue: queueName,
                                                  noAck: true,

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "32a4a6416ef3815c4d9d9ae3ba55f9f460492da3"
+    "signature": "50fe6e02c62097487ff3396141809d2f6feae132"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,7 +11,8 @@
           "Microsoft.ServiceFabric.Actors": "0.6.0-preview-01",
           "System.Fabric": "5.0.1-preview-01",
           "RabbitMQ.Client": "4.1.0",
-          "Microsoft.ServiceFabric.Services": "0.6.0-preview-01"
+          "Microsoft.ServiceFabric.Services": "0.6.0-preview-01",
+          "Newtonsoft.Json": "9.0.1"
         },
         "runtime": {
           "Game.dll": {}
@@ -128,6 +129,14 @@
         },
         "runtime": {
           "lib/netstandard1.6/Microsoft.ServiceFabric.Services.dll": {}
+        }
+      },
+      "Newtonsoft.Json/9.0.1": {
+        "dependencies": {
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
       "RabbitMQ.Client/4.1.0": {
@@ -323,6 +332,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-5dSVei6BwZOZUSXwk5RyLGegA8eD74tN1qGE07RViRNPX0FvC652sLL+HZw+O97yIBwz12Of9zY9TL+vuBvDFg=="
+    },
+    "Newtonsoft.Json/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw=="
     },
     "RabbitMQ.Client/4.1.0": {
       "type": "package",

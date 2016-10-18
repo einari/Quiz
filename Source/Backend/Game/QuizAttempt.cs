@@ -16,6 +16,9 @@ namespace Game
 
         protected override Task OnActivateAsync()
         {
+            StateManager.TryAddStateAsync("QuizId", Guid.Empty);
+            StateManager.TryAddStateAsync("User", string.Empty);
+
             return Task.FromResult(0);
         } 
 
@@ -26,12 +29,16 @@ namespace Game
 
         Task IQuizAttempt.Start(Guid quiz, string user)
         {
-            throw new NotImplementedException();
+            StateManager.SetStateAsync("QuizId", quiz);
+
+            return Task.FromResult(0);
         }
 
         Task IQuizAttempt.Submit(Guid answer, IEnumerable<Guid> attemptedOptions)
         {
-            throw new NotImplementedException();
+            StateManager.SetStateAsync("AnswerFor_"+answer, attemptedOptions);
+            
+            return Task.FromResult(0);
         }
     }
 }
