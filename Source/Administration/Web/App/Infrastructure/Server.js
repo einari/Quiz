@@ -22,6 +22,26 @@ class Server
         return promise;
     }
 
+    post(url, parameters) {
+        let promise = new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(parameters),
+                contentType: "application/json; charset=utf-8",
+                complete: (result, statusAsText) => {
+                    resolve(result);
+                },
+                error: (jqXHR, statusAsText, errorThrown) => {
+                    reject(jqXHR);
+                }
+            });
+        });
+
+        return promise;
+    }
+
     put(url, parameters) {
         let promise = new Promise((resolve, reject) => {
             $.ajax({

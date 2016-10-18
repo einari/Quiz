@@ -38,6 +38,11 @@ export class Editor
         });
     }
 
+    unwrap(quiz) {
+        return ko.toJSON(quiz);
+    }
+
+
     addQuiz() {
         let quiz = {
             id: Guid.create(),
@@ -47,6 +52,7 @@ export class Editor
         this.quizes.push(quiz);
         this.quizTitle("");
         this.currentQuiz(quiz);
+        quizes.add(this.unwrap(quiz));
     }
 
     addQuestion() {
@@ -58,6 +64,7 @@ export class Editor
         this.currentQuiz().questions.push(question);
         this.question("");
         this.currentQuestion(question);
+        quizes.update(this.unwrap(this.currentQuiz()));
     }
 
     addOption() {
@@ -69,5 +76,6 @@ export class Editor
         this.optionText("");
         this.optionCorrect(false);
         this.currentQuestion().options.push(option);
+        quizes.update(this.unwrap(this.currentQuiz()));
     }
 }

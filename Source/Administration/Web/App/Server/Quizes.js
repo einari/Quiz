@@ -2,11 +2,17 @@ export default class Quizes {
     constructor(express) {
         let self = this;
 
-        express.put("/quizes", (request, response, next) => {
-
+        express.post("/quizes", (request, response, next) => {
+            console.log("post");
             response.status(200);
-            response.end();
         });
+
+        express.put("/quizes", (request, response, next) => {
+            console.log("put");
+            response.status(200);
+        });
+
+        
 
         express.get("/quizes", (request, response, next) => {
             self.getAll().then(all => {
