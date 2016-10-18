@@ -1,4 +1,4 @@
 #!/bin/bash
 
-azure servicefabric application delete fabric:/QuizGame
-azure servicefabric application type unregister QuizGameType 1.0.0
+azure servicefabric application delete fabric:/QuizAdministration
+azure servicefabric application type unregister QuizAdministrationType 1.0.0
