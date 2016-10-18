@@ -5,6 +5,7 @@ import Quizes from "./Quizes";
 import Attempts from "./Attempts";
 import bodyParser from "body-parser";
 import socketio from "socket.io";
+import {quizMessages} from "./QuizMessages";
 
 let app = express();
 let server = http.Server(app);
@@ -22,15 +23,9 @@ new Attempts(app);
 
 app.use(express.static(__dirname+"/../"));
 
-
 let io = socketio(server);
 io.on("connection", socket => {
-    socket.emit("Quiz", {hello: "world"});
-
-    socket.on("MyOtherEvent", data => {
-        console.log(data);
-
-    });
+    quizMessages.quizAdded.subscribe(quiz => socket.emit("quizAdded", quiz));
 });
 
 console.log("Start server");

@@ -2,6 +2,7 @@ import {quizes} from "./Quizes";
 import {attempts} from "./Attempts";
 import navigation from "../Infrastructure/Navigation";
 import globalState from "./GlobalState";
+import io from "socket.io/socket.io";
 
 let Guid = {
     create: function() {
@@ -21,14 +22,21 @@ export class Choose
         this.userName = ko.observable();
 
         this.hasUserName = ko.computed(() => {
+            return true;
+            /*
             return typeof globalState.userName() != "undefined" && 
                             globalState.userName() != null &&
-                            globalState.userName() != "";
+                            globalState.userName() != "";*/
         });
         
 
         this.quizes = ko.observableArray();
         quizes.getAll().then(result => self.quizes(result));
+
+        let socket = io.connect(document.location.origin);
+        socket.on("quizAdded", data => {
+            self.quizes.push(data);
+        });
     }
 
     start(quiz) {
