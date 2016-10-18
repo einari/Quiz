@@ -13,7 +13,7 @@
    <CodePackage Name="Data.code" Version="1.0.0">
       <EntryPoint>
          <ContainerHost>
-            <ImageName>mongo</ImageName>
+            <ImageName>mongo:latest</ImageName>
             <Commands></Commands>
          </ContainerHost>
       </EntryPoint>
