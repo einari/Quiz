@@ -1,15 +1,18 @@
+import {quizMessages} from "./QuizMessages";
+
 export default class Quizes {
     constructor(express) {
         let self = this;
 
         express.post("/quizes", (request, response, next) => {
             console.log("post");
+            self.create(request.body);
             response.status(200).json({status:"ok"});
         });
 
         express.put("/quizes", (request, response, next) => {
             console.log("put");
-            console.log(request.body);
+            self.update(request.body);
             response.status(200).json({status:"ok"});
         });
 
@@ -20,8 +23,12 @@ export default class Quizes {
         });
     }
 
-    create() {
+    create(quiz) {
+        quizMessages.added(quiz);
+    }
 
+    update() {
+        quizMessages.updated(quiz);
     }
 
     getAll() {
@@ -48,5 +55,4 @@ export default class Quizes {
         });
         return promise;
     }
-
 }
