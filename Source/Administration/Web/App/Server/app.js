@@ -2,9 +2,13 @@ import https from "https";
 import express from "express";
 import Quizes from "./Quizes";
 import rabbit from "rabbit.js";
+import bodyParser from "body-parser";
 
 
 let app = express();
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+
 app.get("/server/*", (request, response, next) => {
     response.status(404);
     response.end();

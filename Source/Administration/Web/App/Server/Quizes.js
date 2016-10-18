@@ -4,15 +4,14 @@ export default class Quizes {
 
         express.post("/quizes", (request, response, next) => {
             console.log("post");
-            response.status(200);
+            response.status(200).json({status:"ok"});
         });
 
         express.put("/quizes", (request, response, next) => {
             console.log("put");
-            response.status(200);
+            console.log(request.body);
+            response.status(200).json({status:"ok"});
         });
-
-        
 
         express.get("/quizes", (request, response, next) => {
             self.getAll().then(all => {

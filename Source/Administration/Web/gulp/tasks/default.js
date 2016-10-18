@@ -27,7 +27,7 @@ gulp.task("default", () => {
 });
 
 gulp.task("quick", () => {
-    runSequence(["server", "watch"]);
+    runSequence("javascript",["server", "watch"]);
 });
 
 

@@ -39,7 +39,7 @@ export class Editor
     }
 
     unwrap(quiz) {
-        return ko.toJSON(quiz);
+        return ko.toJS(quiz);
     }
 
 
