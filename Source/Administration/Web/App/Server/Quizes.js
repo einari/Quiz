@@ -27,7 +27,7 @@ export default class Quizes {
         quizMessages.added(quiz);
     }
 
-    update() {
+    update(quiz) {
         quizMessages.updated(quiz);
     }
 
