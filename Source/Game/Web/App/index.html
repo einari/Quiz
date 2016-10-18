@@ -2,22 +2,38 @@
 <html>
 
 <head>
-    <title>Quiz</title>
+	<title>Quiz</title>
 
-    <link rel="stylesheet" href="Content/styles.css">
+	<link rel="stylesheet" href="Content/styles.css">
+	<style>
+        .glyphicon.spinning {
+            animation: spin 1s infinite linear;
+            -webkit-animation: spin2 1s infinite linear;
+        }
+
+        @keyframes spin {
+            from { transform: scale(1) rotate(0deg); }
+            to { transform: scale(1) rotate(360deg); }
+        }
+
+        @-webkit-keyframes spin2 {
+            from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); }
+        }
+	</style>
 </head>
 
 <body>
-    <div class="container">
-        <div data-view="Structure/header"></div>
-        <div data-navigationframe="Quiz/Choose"></div>
-        <!--<div data-view="Quiz/Choose"></div>-->
-    </div>
+	<div class="container">
+		<div data-view="Structure/header"></div>
+		<div data-navigationframe="Quiz/Choose"></div>
+		<!--<div data-view="Quiz/Choose"></div>-->
+	</div>
 
-    <script src="jspm_packages/system.js"></script>
-    <script src="jspm.config.js"></script>
+	<script src="jspm_packages/system.js"></script>
+	<script src="jspm.config.js"></script> 
 
-    <script>
+	<script>
         System.cacheBust = "?bust="+Date.now();
         var systemLocate = System.locate;
 

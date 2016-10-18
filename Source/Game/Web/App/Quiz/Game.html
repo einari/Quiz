@@ -1,9 +1,12 @@
+<span style="font-size: 10.2em;" class="glyphicon glyphicon-refresh spinning" data-bind="visible: submitting"></span>
+
+<!-- ko if: !submitting() -->
 <h1>Quiz</h1>
 <h2 data-bind="text: quiz().title"></h2>
 
 <div class="container">
 	<div class="row">
-
+        
 		<h3 data-bind="text: currentQuestion().question"></h3>
 		<!-- ko foreach: currentQuestionOptions -->
 		<div class="input-group">
@@ -23,5 +26,7 @@
         <button class="btn btn-primary" data-bind="visible: hasPrevious(), click: goToPreviousQuestion.bind($data)">Previous</button>
         <button class="btn btn-primary" data-bind="visible: hasNext(), click: goToNextQuestion.bind($data)">Next</button>
         <button class="btn btn-success" data-bind="visible: isLastQuestion(), click: submitAnswers.bind($data)">Submit</button>
+        
 	</div>
 </div>
+<!-- /ko -->
