@@ -1,0 +1,397 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.0",
+    "signature": "1f7043000133d12136eafafeab2fad2a0d955f24"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.0": {
+      "Game/1.0.0": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Actors": "0.6.0-preview-01",
+          "System.Fabric": "5.0.1-preview-01",
+          "Microsoft.ServiceFabric.Services": "0.6.0-preview-01"
+        },
+        "runtime": {
+          "Game.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Actors/0.6.0-preview-01": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Data": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Data.Interfaces": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Internal": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Internal.Strings": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Services": "0.6.0-preview-01",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.Fabric": "5.0.1-preview-01",
+          "System.IO.FileSystem.AccessControl": "4.0.0",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.ServiceProcess.ServiceController": "4.1.0",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Actors.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Data/0.6.0-preview-01": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Data.Impl": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Data.Interfaces": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Internal": "0.6.0-preview-01",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.Fabric": "5.0.1-preview-01",
+          "System.IO.FileSystem.AccessControl": "4.0.0",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.ServiceProcess.ServiceController": "4.1.0",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Data.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Data.Impl/0.6.0-preview-01": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Data.Interfaces": "0.6.0-preview-01",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.Fabric": "5.0.1-preview-01",
+          "System.Fabric.Management.ServiceModel": "5.0.1-preview-01",
+          "System.IO.FileSystem.AccessControl": "4.0.0",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.ServiceProcess.ServiceController": "4.1.0",
+          "System.Xml.XmlSerializer": "4.0.11",
+          "system.fabric.strings": "5.0.1-preview-01"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Data.Impl.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Data.Interfaces/0.6.0-preview-01": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Internal": "0.6.0-preview-01",
+          "System.Fabric": "5.0.1-preview-01"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Data.Interfaces.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Internal/0.6.0-preview-01": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Internal.Strings": "0.6.0-preview-01",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.Fabric": "5.0.1-preview-01",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.ServiceProcess.ServiceController": "4.1.0",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Internal.McgInterop.dll": {},
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Internal.dll": {},
+          "lib/netstandard1.6/System.Private.CompilerServices.ICastable.dll": {},
+          "lib/netstandard1.6/System.Private.CoreLib.InteropServices.dll": {},
+          "lib/netstandard1.6/System.Private.Interop.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Internal.Strings/0.6.0-preview-01": {
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Internal.Strings.dll": {}
+        }
+      },
+      "Microsoft.ServiceFabric.Services/0.6.0-preview-01": {
+        "dependencies": {
+          "Microsoft.ServiceFabric.Data": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Data.Interfaces": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Internal": "0.6.0-preview-01",
+          "Microsoft.ServiceFabric.Internal.Strings": "0.6.0-preview-01",
+          "ServiceFabricServiceModel": "0.6.0-preview-01",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.Fabric": "5.0.1-preview-01",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.ServiceProcess.ServiceController": "4.1.0",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.ServiceFabric.Services.dll": {}
+        }
+      },
+      "ServiceFabricServiceModel/0.6.0-preview-01": {
+        "dependencies": {
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.6/ServiceFabricServiceModel.dll": {}
+        }
+      },
+      "System.Collections.NonGeneric/4.0.1": {
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
+        }
+      },
+      "System.Collections.Specialized/4.0.1": {
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.Specialized.dll": {}
+        }
+      },
+      "System.Fabric/5.0.1-preview-01": {
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.Fabric.Management.ServiceModel": "5.0.1-preview-01",
+          "System.Runtime.Serialization.Json": "4.0.2",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.Security.Securestring": "4.0.0",
+          "System.ServiceProcess.ServiceController": "4.1.0",
+          "System.Xml.XmlSerializer": "4.0.11",
+          "system.fabric.strings": "5.0.1-preview-01"
+        },
+        "runtime": {
+          "lib/netstandard1.6/System.Fabric.McgInterop.dll": {},
+          "lib/netstandard1.6/System.Fabric.dll": {},
+          "lib/netstandard1.6/System.Private.CompilerServices.ICastable.dll": {},
+          "lib/netstandard1.6/System.Private.CoreLib.InteropServices.dll": {},
+          "lib/netstandard1.6/System.Private.Interop.dll": {}
+        }
+      },
+      "System.Fabric.Management.ServiceModel/5.0.1-preview-01": {
+        "dependencies": {
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.2-beta-24315-03",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.6/System.Fabric.Management.ServiceModel.dll": {}
+        }
+      },
+      "system.fabric.strings/5.0.1-preview-01": {
+        "runtime": {
+          "lib/netstandard1.6/system.fabric.strings.dll": {}
+        }
+      },
+      "System.IO.FileSystem.AccessControl/4.0.0": {
+        "dependencies": {
+          "System.Security.AccessControl": "4.0.0"
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.IO.FileSystem.AccessControl.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.3/System.IO.FileSystem.AccessControl.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      },
+      "System.Private.DataContractSerialization/4.1.2-beta-24315-03": {
+        "dependencies": {
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Private.DataContractSerialization.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Json/4.0.2": {
+        "dependencies": {
+          "System.Private.DataContractSerialization": "4.1.2-beta-24315-03"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Json.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Primitives/4.1.1": {
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Xml/4.1.2-beta-24315-03": {
+        "dependencies": {
+          "System.Private.DataContractSerialization": "4.1.2-beta-24315-03",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Xml.dll": {}
+        }
+      },
+      "System.Security.AccessControl/4.0.0": {
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.Security.AccessControl.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Security.AccessControl.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      },
+      "System.Security.Securestring/4.0.0": {
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.Security.SecureString.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Security.SecureString.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      },
+      "System.ServiceProcess.ServiceController/4.1.0": {
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.5/System.ServiceProcess.ServiceController.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.5/System.ServiceProcess.ServiceController.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.11": {
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Game/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.ServiceFabric.Actors/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-odZdvCTZ4uOMTSmu7FahmjNSI0p4Q7HgiNKEHzD3KYxXhkpCt3KXfY6O41ggss9mUwBFx2nshk/ipqpY5m15Gg=="
+    },
+    "Microsoft.ServiceFabric.Data/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nJTnd6TTfJZ8Ul+JWRqEVRUiH8ajVflFThkNN2mFdjpYL0K0WPA/X3WnGF0IOYxrXCsGakLsUo3+bcYNGDm+LA=="
+    },
+    "Microsoft.ServiceFabric.Data.Impl/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ouw/i4qF9kYV7u+EiYqmTqzUvR03fVOjSLabcs8tu2lGqsJj26Mf6epz+79Dp92V5hHIvGqEM4jtnDkhMovGEA=="
+    },
+    "Microsoft.ServiceFabric.Data.Interfaces/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mXNf+g3Mk/AqbkPxRus+mhLbcZB66O32qe9uzY3o6VL+xW7Tz1/zUF3MOFVJVaIjBNvAasVEvh+bgnGr6eaTPA=="
+    },
+    "Microsoft.ServiceFabric.Internal/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yh/K8XFEM7T/3Qg2LWC4jomW8riO/+moh+/mUckjfhIBP+QIL2QrZB88RuJ7Mt4+eHw3ypgPrkpaMrucM0JPiA=="
+    },
+    "Microsoft.ServiceFabric.Internal.Strings/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gJ6syJlsi/W1KsXlk4ZNKjwTpdKhgFN65AQ2icFwbeEMQtdXQ0dKgx8kNyEUAqikJrrVZI84RWCjjHarYCVung=="
+    },
+    "Microsoft.ServiceFabric.Services/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5dSVei6BwZOZUSXwk5RyLGegA8eD74tN1qGE07RViRNPX0FvC652sLL+HZw+O97yIBwz12Of9zY9TL+vuBvDFg=="
+    },
+    "ServiceFabricServiceModel/0.6.0-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-l9kucS31PlxnaN8yuSTl7/ANfsl76RZSB4Qx63JTaKQ10U6546aRLlNcm2Qbg53nmeGVLKhqGCfTzabKYM9NPQ=="
+    },
+    "System.Collections.NonGeneric/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hMxFT2RhhlffyCdKLDXjx8WEC5JfCvNozAZxCablAuFRH74SCV4AgzE8yJCh/73bFnEoZgJ9MJmkjQ0dJmnKqA=="
+    },
+    "System.Collections.Specialized/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/HKQyVP0yH1I0YtK7KJL/28snxHNH/bi+0lgk/+MbURF6ULhAE31MDI+NZDerNWu264YbxklXCCygISgm+HMug=="
+    },
+    "System.Fabric/5.0.1-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fY7Nvsvb0HwG0P99hhy2CMVhZ6VjXsqljpKNFGU606KtJvjQdFUPDQ4icFRWZW36FQcktKeM9tVeBa5ZuHjFDQ=="
+    },
+    "System.Fabric.Management.ServiceModel/5.0.1-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jQ8NgIcTR0mbiNuusKUbbLbp7dfQBdMVrsWz+qg+UTf2iTpWpht1GXMYFt8qdsj5QbIHAGjs3tEr6ZbDnhaX/w=="
+    },
+    "system.fabric.strings/5.0.1-preview-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lDuqSNCyip0HsvUyvCmlGr6w6f8tKxxTPx35gcvkNO2qoWdpM4Pt5vIoOzSLjiTwzXluIMagseCb0YYkunTdzw=="
+    },
+    "System.IO.FileSystem.AccessControl/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I80oVypfOvG0y0D8d0/0X/RIcAbJaFkTToy9sRJdVDVIAEImgMBEmSxxs8XpCP0PByWhOpxjRjcaGHdvNTbIUg=="
+    },
+    "System.Private.DataContractSerialization/4.1.2-beta-24315-03": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WsZpLJaRhbIhYazieNAckzg0CBeUHBHwfaT7+IBlJ7+FpSBDrRmfY5xuxu0jrXWGymrpyIdFzTvxZPqm81gzvQ=="
+    },
+    "System.Runtime.Serialization.Json/4.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+7DIJhnKYgCzUgcLbVTtRQb2l1M0FP549XFlFkQM5lmNiUBl44AfNbx4bz61xA8PzLtlYwfmif4JJJW7MPPnjg=="
+    },
+    "System.Runtime.Serialization.Primitives/4.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HZ6Du5QrTG8MNJbf4e4qMO3JRAkIboGT5Fk804uZtg3Gq516S7hAqTm2UZKUHa7/6HUGdVy3AqMQKbns06G/cg=="
+    },
+    "System.Runtime.Serialization.Xml/4.1.2-beta-24315-03": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ka7wfdyouB5dBQxoaXpfT5AtUIEUUeiyvH7GeabNMaon0gFD2y1vcgAMf1Z4QTuOFHOjOz9xkZbvsLhI+N5S/A=="
+    },
+    "System.Security.AccessControl/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xsTykIpBOWK9q3XLrnvE7WoWtCQ4DKvGliAJ13uzsN8qIwMuYMEuSNXxdJsygYA+AM3dVJUjDbgPwZgOvp1gGQ=="
+    },
+    "System.Security.Securestring/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sqzq9GD6/b0yqPuMpgIKBuoLf4VKAj8oAfh4kXSzPaN6eoKY3hRi9C5L27uip25qlU+BGPfb0xh2Rmbwc4jFVA=="
+    },
+    "System.ServiceProcess.ServiceController/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qWVE9WN3+IXpOyRTZJOgDzNNHOp/oC2HaBiAv+T0w8ALWFAdfr0uH4WbFMvgYheZxXxnDXik0FyPelx2Vheaag=="
+    },
+    "System.Xml.XmlSerializer/4.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FrazwwqfIXTfq23mfv4zH+BjqkSFNaNFBtjzu3I9NRmG8EELYyrv/fJnttCIwRMFRR/YKXF1hmsMmMEnl55HGw=="
+    }
+  }
+}
