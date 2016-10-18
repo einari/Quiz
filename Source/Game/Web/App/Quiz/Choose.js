@@ -22,11 +22,11 @@ export class Choose
         this.userName = ko.observable();
 
         this.hasUserName = ko.computed(() => {
-            return true;
-            /*
+            //return true;
+            
             return typeof globalState.userName() != "undefined" && 
                             globalState.userName() != null &&
-                            globalState.userName() != "";*/
+                            globalState.userName() != "";
         });
         
 
@@ -37,11 +37,15 @@ export class Choose
         socket.on("quizAdded", data => {
             self.quizes.push(data);
         });
+        socket.on("attemptScored", data => {
+            console.log("Attempt scored");
+        });
     }
 
     start(quiz) {
         globalState.currentQuiz(quiz);
         globalState.currentAttempt(Guid.create());
+        globalState.userName(this.userName());
         navigation.goTo("Quiz/Game");
         attempts.start(quiz.id, globalState.currentAttempt(), globalState.userName());
     }

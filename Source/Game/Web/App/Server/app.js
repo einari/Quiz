@@ -26,6 +26,7 @@ app.use(express.static(__dirname+"/../"));
 let io = socketio(server);
 io.on("connection", socket => {
     quizMessages.quizAdded.subscribe(quiz => socket.emit("quizAdded", quiz));
+    quizMessages.attemptScored.subscribe(result => socket.emit("attemptScored", result));
 });
 
 console.log("Start server");

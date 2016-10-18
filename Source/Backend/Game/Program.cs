@@ -1,6 +1,8 @@
 namespace Game
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -69,7 +71,40 @@ namespace Game
                                     }
                                 }
 
-                                
+                                if( message.type == "questionAnswerSubmitted") 
+                                {
+                                    var attempt = Guid.Parse(message.body.attempt.ToString());
+                                    var question = Guid.Parse(message.body.question.ToString());
+                                    var answers = ((IEnumerable<object>)message.body.answers).Select(a => Guid.Parse(a.ToString()));
+                                    var actor = ActorProxy.Create<IQuizAttempt>(new ActorId(attempt), "fabric:/QuizBackend", "Game");
+                                    actor.Submit(question, answers);
+                                }
+
+                                if( message.type == "attemptSubmitted") 
+                                {
+                                    Console.WriteLine("Conclude");
+                                    var attempt = Guid.Parse(message.body.attempt.ToString());
+                                    var actor = ActorProxy.Create<IQuizAttempt>(new ActorId(attempt), "fabric:/QuizBackend", "Game");
+                                    //actor.Conclude().ContinueWith(result => 
+                                    {
+                                        Console.WriteLine("Concluded");
+                                        var resultMessage = new {
+                                            type= "attemptScored",
+                                            body= new {
+                                                result = 42f
+                                            }
+                                        };
+                                        var resultBody = JsonConvert.SerializeObject(resultMessage);
+                                        Console.WriteLine($" [x] Send {resultBody}");
+                                        var bodyAsBytes = Encoding.UTF8.GetBytes(resultBody);
+
+                                        using( var chn = connection.CreateModel() ) 
+                                        {
+                                            chn.ExchangeDeclare(exchangeName, "fanout");
+                                            chn.BasicPublish(exchange: exchangeName, routingKey:"", basicProperties:null, body: bodyAsBytes);
+                                        }
+                                    }
+                                }
                             };
 
                             channel.BasicConsume(queue: queueName,

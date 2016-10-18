@@ -22,9 +22,10 @@ namespace Game
             return Task.FromResult(0);
         } 
 
-        Task IQuizAttempt.Conclude()
+        Task<float> IQuizAttempt.Conclude()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Conclude - inside actor");
+            return Task.FromResult(42f);
         }
 
         Task IQuizAttempt.Start(Guid quiz, string user)

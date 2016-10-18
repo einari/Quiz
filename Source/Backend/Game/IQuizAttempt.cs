@@ -8,7 +8,7 @@ namespace Game
     public interface IQuizAttempt : IActor
     {
         Task Start(Guid quiz, string user);
-        Task Submit(Guid answer, IEnumerable<Guid> attemptedOptions);
-        Task Conclude();
+        Task Submit(Guid question, IEnumerable<Guid> attemptedOptions);
+        Task<float> Conclude();
     }
 }

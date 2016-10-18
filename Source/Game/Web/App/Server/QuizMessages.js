@@ -22,6 +22,7 @@ class QuizMessages {
 
         this.quizAdded = new Event();
         this.quizUpdated = new Event();
+        this.attemptScored = new Event();
 
         amqp.connect("amqp://192.168.50.50", (error, connection) => {
             console.log("Connected");
@@ -56,13 +57,16 @@ class QuizMessages {
             let channel = connection.createChannel((e, channel) => {
                 let exchangeName = "events";
                 channel.assertExchange(exchangeName, "fanout", { durable: false });
-                channel.publish(exchangeName, "", new Buffer(JSON.stringify(message)));
+                let messageAsString = JSON.stringify(message);
+                console.log(`Publish : ${messageAsString}`);
+                channel.publish(exchangeName, "", new Buffer(messageAsString));
             });
         });
     }
 
 
     attemptStarted(quiz, attempt, user) {
+        console.log(`attemptStarted(${quiz}, ${attempt}, ${user})`);
         this.publish("attemptStarted", {
             quiz: quiz,
             attempt: attempt,
@@ -74,7 +78,7 @@ class QuizMessages {
         this.publish("questionAnswerSubmitted", {
             attempt: attempt,
             question: question,
-            options: answers
+            answers: answers
         });
     }
 
