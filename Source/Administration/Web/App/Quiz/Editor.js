@@ -28,9 +28,11 @@ export class Editor
 
         this.quizes = ko.observableArray();
         quizes.getAll().then(result => {
-            result.questions = ko.observableArray(result.questions);
-            result.questions().forEach(question => {
-                question.options = ko.observableArray(question.options);
+            result.forEach(quiz => {
+                quiz.questions = ko.observableArray(quiz.questions);
+                quiz.questions().forEach(question => {
+                    question.options = ko.observableArray(question.options);
+                });
             });
 
             self.quizes(result);
@@ -63,6 +65,7 @@ export class Editor
         this.currentQuiz().questions.push(question);
         this.question("");
         this.currentQuestion(question);
+        
         quizes.update(this.unwrap(this.currentQuiz()));
     }
 
@@ -74,6 +77,7 @@ export class Editor
         };
         this.optionText("");
         this.optionCorrect(false);
+        
         this.currentQuestion().options.push(option);
         quizes.update(this.unwrap(this.currentQuiz()));
     }
