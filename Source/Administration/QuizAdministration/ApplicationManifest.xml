@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest  ApplicationTypeName="QuizAdministrationType" ApplicationTypeVersion="1.0.0"
+                      xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   
+   <Parameters>
+    <Parameter Name="Web_InstanceCount" DefaultValue="1" />
+    <Parameter Name="Data_InstanceCount" DefaultValue="1" />
+   </Parameters>
+   
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="WebPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="DataPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+
+   <Policies>
+        <ContainerHostPolicies CodePackageRef="Web.code">
+            <PortBinding ContainerPort="3001" EndpointRef="WebPort"/>
+        </ContainerHostPolicies>
+        <ContainerHostPolicies CodePackageRef="Data.code">
+            <PortBinding ContainerPort="5432" EndpointRef="PostgreSQLPort"/>
+        </ContainerHostPolicies>
+   </Policies>
+   
+   <DefaultServices>
+      <Service Name="Web">
+         <StatelessService ServiceTypeName="WebType" InstanceCount="[Web_InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>
+      <Service Name="Data">
+         <StatelessService ServiceTypeName="DataType" InstanceCount="[Data_InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>
+   </DefaultServices>
+   
+</ApplicationManifest>

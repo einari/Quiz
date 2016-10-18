@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t einari/quizgameweb .
+docker build -t einari/quizadministrationweb .
