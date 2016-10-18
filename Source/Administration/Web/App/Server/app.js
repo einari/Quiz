@@ -1,9 +1,7 @@
 import https from "https";
 import express from "express";
 import Quizes from "./Quizes";
-
 import bodyParser from "body-parser";
-
 
 let app = express();
 app.use(bodyParser.urlencoded());
