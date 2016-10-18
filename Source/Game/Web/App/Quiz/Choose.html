@@ -1,14 +1,32 @@
 <h1>Choose your quiz</h1>
 
 <div class="container">
-    <div class="row" data-bind="foreach: quizes">
-        <div class="col-sm-1" style="width: 200px; height:250px; border: 1px dashed #bbb;">
-            <img src="/Quiz/quiz.jpg" style="width: 180px; padding-top:10px;">
-            <b data-bind="text: title"></b>
-            <br>
-            <button style="width: 170px; position: absolute; bottom: 3px; height: 32px;" data-bind="click: $root.start.bind($root, $data)">Start</button>
-        </div>
-    </div>
+
+	<!-- ko if: !hasUserName() -->
+	<div class="row">
+		<h2>You must enter your username</h2>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">@</span>
+			<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" data-bind="textInput: userName">
+		</div>
+        <br>
+		<button class="btn btn-primary" data-bind="click: setUsername">Begin</button>
+	</div>
+
+	<!-- /ko -->
+
+    <!-- ko if: hasUserName() -->
+	<div class="row" data-bind="foreach: quizes">
+
+
+
+		<div class="col-sm-1" style="width: 200px; height:250px; border: 1px dashed #bbb;">
+			<img src="/Quiz/quiz.jpg" style="width: 180px; padding-top:10px;">
+			<b data-bind="text: title"></b>
+			<br>
+			<button style="width: 170px; position: absolute; bottom: 3px; height: 32px;" data-bind="click: $root.start.bind($root, $data)">Start</button>
+		</div>
+	</div>
+    <!-- /ko -->
 
 </div>
-

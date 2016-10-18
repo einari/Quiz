@@ -3,38 +3,39 @@ import globalState from "./GlobalState";
 export class Game {
     constructor() {
         let self = this;
-        this.quiz = ko.observable({
-            id: 42, title: "Magical quiz", description: "This is the awesome one", questions: [
-                {
-                    id: 43,
-                    question: "Name all magicians", options: [
-                        { id: 44, text: "Lord Vader", isCorrect: false },
-                        { id: 45, text: "El Presidento", isCorrect: false },
-                        { id: 46, text: "David Blaine", isCorrect: true },
-                        { id: 47, text: "David Copperfield", isCorrect: true }
-                    ]
-                },
-                {
-                    id: 48,
-                    question: "Find the horse", options: [
-                        { id: 48, text: "Horse man", isCorrect: false },
-                        { id: 49, text: "El horso", isCorrect: false },
-                        { id: 50, text: "David Horso", isCorrect: true },
-                        { id: 51, text: "David Copperfield", isCorrect: false }
-                    ]
-                },
-                {
-                    id: 52,
-                    question: "Check all that applies", options: [
-                        { id: 53, text: "Water is heavy", isCorrect: false },
-                        { id: 54, text: "Water is fluid", isCorrect: true },
-                        { id: 55, text: "Water is transparent", isCorrect: true },
-                        { id: 56, text: "Water is solid", isCorrect: false }
-                    ]
-                },
-            ]
-        });
-        //globalState.currentQuiz;
+        this.quiz = ko.observable(globalState.currentQuiz());
+        //     {
+        //     id: 42, title: "Magical quiz", description: "This is the awesome one", questions: [
+        //         {
+        //             id: 43,
+        //             question: "Name all magicians", options: [
+        //                 { id: 44, text: "Lord Vader", isCorrect: false },
+        //                 { id: 45, text: "El Presidento", isCorrect: false },
+        //                 { id: 46, text: "David Blaine", isCorrect: true },
+        //                 { id: 47, text: "David Copperfield", isCorrect: true }
+        //             ]
+        //         },
+        //         {
+        //             id: 48,
+        //             question: "Find the horse", options: [
+        //                 { id: 48, text: "Horse man", isCorrect: false },
+        //                 { id: 49, text: "El horso", isCorrect: false },
+        //                 { id: 50, text: "David Horso", isCorrect: true },
+        //                 { id: 51, text: "David Copperfield", isCorrect: false }
+        //             ]
+        //         },
+        //         {
+        //             id: 52,
+        //             question: "Check all that applies", options: [
+        //                 { id: 53, text: "Water is heavy", isCorrect: false },
+        //                 { id: 54, text: "Water is fluid", isCorrect: true },
+        //                 { id: 55, text: "Water is transparent", isCorrect: true },
+        //                 { id: 56, text: "Water is solid", isCorrect: false }
+        //             ]
+        //         },
+        //     ]
+        // });
+        //;
         this.currentQuestionIndex = ko.observable(0);
         this.currentQuestion = ko.computed(() => {
             return self.quiz().questions[self.currentQuestionIndex()]

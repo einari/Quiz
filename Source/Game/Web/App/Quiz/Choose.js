@@ -18,6 +18,14 @@ export class Choose
 {
     constructor() {
         let self = this;
+        this.userName = ko.observable();
+
+        this.hasUserName = ko.computed(() => {
+            return typeof globalState.userName() != "undefined" && 
+                            globalState.userName() != null &&
+                            globalState.userName() != "";
+        });
+        
 
         this.quizes = ko.observableArray();
         quizes.getAll().then(result => self.quizes(result));
@@ -28,5 +36,9 @@ export class Choose
         globalState.currentAttempt(Guid.create());
         navigation.goTo("Quiz/Game");
         attempts.start(quiz.id, globalState.currentAttempt(), "einar@dolittle.com");
+    }
+
+    setUsername() {
+        globalState.userName(this.userName);
     }
 }
