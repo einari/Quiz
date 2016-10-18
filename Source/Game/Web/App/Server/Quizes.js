@@ -1,4 +1,4 @@
-import rabbit from "rabbit.js";
+import {quizMessages} from "./QuizMessages";
 
 export default class Quizes {
     constructor(express) {
@@ -9,28 +9,7 @@ export default class Quizes {
                 response.send(all);
             });
         });
-
-        console.log("Quizes - game");
-
-        let context = rabbit.createContext("amqp://localhost");
-        context.on("ready", () => {
-            let sub = context.socket("SUB");
-
-            console.log("Ready");
-
-            sub.setEncoding("utf8");
-
-            sub.on("data", message => {
-                console.log(`Data ${message}`);
-            });
-
-            sub.connect("events", () => {
-                console.log("Connected");
-
-            });
-        });
     }
-
 
     getAll() {
         let promise = new Promise((resolve, reject) => {

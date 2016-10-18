@@ -1,10 +1,7 @@
 namespace Game
 {
     using System;
-    using System.Diagnostics;
-    using System.Fabric;
     using System.Threading;
-    using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Actors.Runtime;
 
     internal static class Program
@@ -16,7 +13,7 @@ namespace Game
         {
             try
             {
-                ActorRuntime.RegisterActorAsync<Game>(
+                ActorRuntime.RegisterActorAsync<Quiz>(
                    (context, actorType) => new ActorService(context, actorType)).GetAwaiter().GetResult();
 
                 Thread.Sleep(Timeout.Infinite);

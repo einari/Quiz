@@ -1,4 +1,5 @@
 import {quizes} from "./Quizes";
+import {attempts} from "./Attempts";
 import navigation from "../Infrastructure/Navigation";
 import globalState from "./GlobalState";
 
@@ -14,5 +15,6 @@ export class Choose
     start(quiz) {
         globalState.currentQuiz(quiz);
         navigation.goTo("Quiz/Game");
+        attempts.start(quiz.id, "einar@dolittle.com");
     }
 }

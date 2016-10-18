@@ -2,6 +2,26 @@ import rabbit from "rabbit.js";
 
 class QuizMessages
 {
+    constructor() {
+        let context = rabbit.createContext("amqp://192.168.50.50");
+        context.on("ready", () => {
+            let sub = context.socket("SUB");
+
+            console.log("Ready");
+
+            sub.setEncoding("utf8");
+
+            sub.on("data", message => {
+                console.log(`Data ${message}`);
+            });
+
+            sub.connect("events", () => {
+                console.log("Connected");
+
+            });
+        });
+    }
+
     publish(messageType, data) {
         let message = {
             type: messageType,
@@ -19,12 +39,11 @@ class QuizMessages
         });
     }
 
-    added(quiz) {
-        this.publish("quizAdded", quiz);
-    }
-
-    updated(quiz) {
-        this.publish("quizUpdated", quiz);
+    attemptStarted(quiz, user) {
+        this.publish("attemptStarted", {
+            quiz: quiz,
+            user: user
+        });
     }
 }
 export let quizMessages = new QuizMessages();

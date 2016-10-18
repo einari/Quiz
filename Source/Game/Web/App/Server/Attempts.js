@@ -1,14 +1,22 @@
+import {quizMessages} from "./QuizMessages";
+
 export default class Attempts
 {
     constructor(express) {
-
+        var self = this;
+        express.post("/attempts", (request, response, next) => {
+            console.log("Attempts");
+            self.start(request.body.quiz, request.body.user);
+        });
     }
 
-    begin() {
 
+    start(quiz, user) {
+
+        quizMessages.attemptStarted(quiz, user);
     }
 
-    answerForQuestion(id) {
+    submitAnswer(id, options) {
 
     }
 
