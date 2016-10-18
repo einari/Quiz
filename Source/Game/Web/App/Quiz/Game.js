@@ -1,4 +1,5 @@
 import globalState from "./GlobalState";
+import {attempts} from "./Attempts";
 
 export class Game {
     constructor() {
@@ -49,6 +50,7 @@ export class Game {
     }
 
     goToNextQuestion() {
+        this.submitAnswerFor(this.currentQuestion());
         this.currentQuestion().options.forEach(option => {
             console.log(`${option.text} - ${option.selected()}`)
         });
@@ -58,25 +60,24 @@ export class Game {
         }
     }
 
+    submitAnswerFor(question) {
+        let answers = [];
+
+        question.options.forEach(option => {
+            if( option.selected() == true || option.selected() == "on") {
+                answers.push(option.id);
+            }
+        });
+
+        attempts.submitAnswer(globalState.currentAttempt(), this.currentQuestion().id, answers);
+    }
+
     submitAnswers() {
         let questionsAndAnswers = [];
 
         this.submitting(true);
-
-        this.quiz().questions.forEach(question => {
-            let questionAndAnswers = {
-                id: question.id,
-                answers: []
-            }; 
-
-            console.log(`Question : ${question.question}`);
-
-            question.options.forEach(option => {
-                if( option.selected() == true || option.selected() == "on") {
-                    questionAndAnswers.answers.push(option.id);
-                    console.log(`Answer : ${option.text}`)
-                }
-            });
-        });
+        this.submitAnswerFor(this.currentQuestion());
+        
+        attempts.end(globalState.currentAttempt());
     }
 }

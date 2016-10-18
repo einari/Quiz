@@ -12,5 +12,17 @@ class Attempts
         });
         return promise;
     }
+
+    submitAnswer(attempt, question, answers) {
+        server.post("/attempts/submit", {
+            attempt: attempt,
+            question: question,
+            answers: answers
+        });
+    }
+
+    end(attempt) {
+        server.post("/attempts/end", { attempt: attempt });
+    }
 }
 export let attempts = new Attempts();

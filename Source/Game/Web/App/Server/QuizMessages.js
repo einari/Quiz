@@ -69,5 +69,17 @@ class QuizMessages {
             user: user
         });
     }
+
+    questionAnswerSubmitted(attempt, question, answers) {
+        this.publish("questionAnswerSubmitted", {
+            attempt: attempt,
+            question: question,
+            options: answers
+        });
+    }
+
+    attemptSubmitted(attempt) {
+        this.publish("attemptSubmitted", { attempt: attempt });
+    }
 }
 export let quizMessages = new QuizMessages();
