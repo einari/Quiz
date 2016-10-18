@@ -25,7 +25,7 @@ export default class Quizes {
     }
 
     save(quiz) {
-        console.log("Insert quiz: "+JSON.stringify(quiz));
+        console.log("Save quiz: "+JSON.stringify(quiz));
         this.connect().then(db => {
             let quizesCollection = db.collection("Quizes");
             quiz._id = quiz.id;
