@@ -8,7 +8,7 @@
       <Parameter Name="Game_PartitionCount" DefaultValue="1" />
       <Parameter Name="Game_MinReplicaSetSize" DefaultValue="3" />
       <Parameter Name="Game_TargetReplicaSetSize" DefaultValue="3" />
-      <Parameter Name="Receiver_InstanceCount" DefaultValue="-1" />
+      <Parameter Name="Receiver_InstanceCount" DefaultValue="1" />
    </Parameters>
    <ServiceManifestImport>
       <ServiceManifestRef ServiceManifestName="GamePkg" ServiceManifestVersion="1.0.0" />
