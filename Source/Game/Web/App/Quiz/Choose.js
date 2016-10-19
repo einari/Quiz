@@ -24,8 +24,6 @@ export class Choose
         this.userName = ko.observable();
 
         this.hasUserName = ko.computed(() => {
-            //return true;
-            
             return typeof globalState.userName() != "undefined" && 
                             globalState.userName() != null &&
                             globalState.userName() != "";
