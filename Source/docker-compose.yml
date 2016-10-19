@@ -1,0 +1,31 @@
+commonmessaging:
+    image: rabbitmq:3-management
+    ports:
+     - "5672:5672"
+     - "15672:15672"
+
+administrationdata:
+    image: postgres:latest
+    expose:
+     - "5432"
+
+administrationfrontend:
+    image: einari/quizadministrationweb
+    ports: 
+     - "3001:3001"
+    links:
+     - administrationdata
+
+gamedata:
+    image: mongo:latest
+    ports:
+     - "28017:28017"
+    expose:
+     - "27017"
+
+gameweb:
+    image: einari/quizgameweb
+    ports:
+     - "3000:3000"
+    links:
+     - gamedata
