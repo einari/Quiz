@@ -10,8 +10,8 @@ check_errs()
 
 DIR=`dirname $0`
 if [ -e $FabricCodePath/dotnet/dotnet ]; then 
-    $FabricCodePath/dotnet/dotnet $DIR/Game.dll $@
+    $FabricCodePath/dotnet/dotnet $DIR/Receiver.dll $@
 else
-    $DIR/../../../../Fabric.Code/dotnet/dotnet $DIR/Game.dll $@
+    $DIR/../../../../Fabric.Code/dotnet/dotnet $DIR/Receiver.dll $@
 fi
 check_errs $?
