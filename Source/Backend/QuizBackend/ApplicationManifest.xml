@@ -8,15 +8,26 @@
       <Parameter Name="Game_PartitionCount" DefaultValue="1" />
       <Parameter Name="Game_MinReplicaSetSize" DefaultValue="3" />
       <Parameter Name="Game_TargetReplicaSetSize" DefaultValue="3" />
+      <Parameter Name="Receiver_InstanceCount" DefaultValue="-1" />
    </Parameters>
    <ServiceManifestImport>
       <ServiceManifestRef ServiceManifestName="GamePkg" ServiceManifestVersion="1.0.0" />
    </ServiceManifestImport>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="ReceiverPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+   
    <DefaultServices>
       <Service Name="Game">
          <StatefulService ServiceTypeName="GameType" TargetReplicaSetSize="[Game_TargetReplicaSetSize]" MinReplicaSetSize="[Game_MinReplicaSetSize]">
             <UniformInt64Partition PartitionCount="[Game_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
          </StatefulService>
       </Service>
+
+      <Service Name="Receiver">
+         <StatelessService ServiceTypeName="ReceiverType"  InstanceCount="[Receiver_InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+    </Service>      
    </DefaultServices>
 </ApplicationManifest>

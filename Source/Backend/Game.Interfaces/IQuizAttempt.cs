@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 
-namespace Game
+namespace Game.Interfaces
 {
     public interface IQuizAttempt : IActor
     {
