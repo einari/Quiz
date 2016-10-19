@@ -1,5 +1,12 @@
 <span style="font-size: 10.2em;" class="glyphicon glyphicon-refresh spinning" data-bind="visible: submitting"></span>
 
+<!-- ko if: showScore -->
+<h1>Your result is</h1>
+<h2 data-bind="text: score"></h2>
+<!-- /ko -->
+
+<!-- ko if: !showScore() -->
+
 <!-- ko if: !submitting() -->
 <h1>Quiz</h1>
 <h2 data-bind="text: quiz().title"></h2>
@@ -29,4 +36,6 @@
         
 	</div>
 </div>
+<!-- /ko -->
+
 <!-- /ko -->

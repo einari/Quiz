@@ -1,5 +1,6 @@
 import globalState from "./GlobalState";
 import {attempts} from "./Attempts";
+import {quizMessages} from "./QuizMessages";
 
 export class Game {
     constructor() {
@@ -12,6 +13,8 @@ export class Game {
 
         this.currentQuestion.subscribe(this.prepareQuestion);
         this.prepareQuestion(this.currentQuestion());
+        this.showScore = ko.observable(false);
+        this.score = ko.observable(0);
 
         this.currentQuestionOptions = ko.computed(() => {
             let options = self.currentQuestion().options;
@@ -33,6 +36,12 @@ export class Game {
         this.hasNext = ko.computed(() => self.currentQuestionIndex() < self.quiz().questions.length-1  && !self.isLastQuestion());
 
         this.submitting = ko.observable(false);
+
+        quizMessages.attemptScored.subscribe(result => {
+            self.submitting(false);
+            self.score(result.result);
+            self.showScore(true);
+        });
     }
 
     prepareQuestion(question) {
