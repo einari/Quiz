@@ -35,16 +35,7 @@ export class Choose
         this.quizes = ko.observableArray();
         quizes.getAll().then(result => self.quizes(result));
 
-        quizMessages.quizAdded.subscribe(quiz => self.quizes.push(data));
-
-/*
-        let socket = io.connect(document.location.origin);
-        socket.on("quizAdded", data => {
-            self.quizes.push(data);
-        });
-        socket.on("attemptScored", data => {
-            console.log("Attempt scored");
-        });*/
+        quizMessages.quizAdded.subscribe(quiz => self.quizes.push(quiz));
     }
 
     start(quiz) {
