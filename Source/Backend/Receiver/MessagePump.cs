@@ -27,11 +27,14 @@ namespace Receiver
 
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
+            Console.WriteLine("MessagePump - Starting");
             var factory = new ConnectionFactory() { HostName = "192.168.50.50" };
             using (var connection = factory.CreateConnection())
             {
+                Console.WriteLine("MessagePump - Connection created");
                 using (var channel = connection.CreateModel())
                 {
+                    Console.WriteLine("MessagePump - Channel created");
                     var exchangeName = "events";
                     channel.ExchangeDeclare(exchangeName, "fanout");
                     var queueName = channel.QueueDeclare().QueueName;
@@ -111,7 +114,6 @@ namespace Receiver
                                             consumer: consumer);
 
                     Console.WriteLine(" Waiting for messages");
-                    Thread.Sleep(Timeout.Infinite);
                 }
             }
 
