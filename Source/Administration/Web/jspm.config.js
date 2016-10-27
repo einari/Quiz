@@ -1,5 +1,4 @@
 SystemJS.config({
-    defaultJSExtensions: true,
     map: {
         "signalr-jquery": "Scripts/jquery.signalr-2.2.0",
         "signalr": "signalr"
