@@ -29,6 +29,10 @@
                 });
         };
 
+        System.config({
+            defaultJSExtensions: true
+        });
+
         Promise.all([
             System.import("knockout"),
             System.import("index.js"),
