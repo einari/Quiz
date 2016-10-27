@@ -4,7 +4,7 @@
   "description": "We've made some big updates in this release, so it’s **important** that you spend a few minutes to learn what’s new.",
   "main": "web.js",
   "scripts": {
-    "build": "yarn install & jspm install & bower install & gulp build",
+    "build": "yarn install; jspm install; bower install; gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "jspm": {
