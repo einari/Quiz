@@ -1,4 +1,4 @@
 #!/bin/bash
-docker login -u="$1" -p="$2"
-docker push $3/quizadministrationweb
-docker push $3/quizgameweb
+docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+docker push DOCKER_TARGETACCOUNT/quizadministrationweb
+docker push DOCKER_TARGETACCOUNT/quizgameweb
