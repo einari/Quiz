@@ -1,6 +1,17 @@
 #!/bin/bash
 azure servicefabric cluster connect $SERVICEFABRIC_CLUSTER
-(exec ./Common/install.sh)
-(exec ./Administration/install.sh)
-(exec ./Game/install.sh)
-(exec ./Backend/install.sh)
+pushd ./Common
+(exec ./install.sh)
+popd
+
+pushd ./Aminidstration
+(exec ./install.sh)
+popd
+
+pushd ./Game
+(exec ./install.sh)
+popd
+
+pushd ./Backend
+(exec ./install.sh)
+popd
