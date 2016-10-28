@@ -18,16 +18,26 @@ app.get("/server/*", (request, response, next) => {
     response.end();
 });
 
+
+app.get("/env/", (request, response, next) => {
+    response.send(process.env);
+    response.end();
+});
+
+/*
 new Quizes(app);
 new Attempts(app);
+*/
 
 app.use(express.static(__dirname+"/../"));
 
+/*
 let io = socketio(server);
 io.on("connection", socket => {
     quizMessages.quizAdded.subscribe(quiz => socket.emit("quizAdded", quiz));
     quizMessages.attemptScored.subscribe(result => socket.emit("attemptScored", result));
 });
+*/
 
 console.log("Start server");
 server.listen(3000, () => {
