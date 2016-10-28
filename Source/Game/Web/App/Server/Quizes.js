@@ -1,4 +1,5 @@
-import {quizMessages} from "./QuizMessages";
+import { quizMessages } from "./QuizMessages";
+import { namingService } from "./NamingService"
 import mongoClient from "mongodb";
 
 export default class Quizes {
@@ -12,20 +13,48 @@ export default class Quizes {
                 response.send(all);
             });
         });
+
+        self.mongoDbUrl = null;
+        namingService.resolveEndpoint("QuizGame", "QuizGame/Data", "MongoAccessPort").then(endpoint => {
+            self.mongoDbUrl = `mongodb://${endpoint}/myproject`;
+            console.log(`Mongo url ${self.mongoDbUrl}`);
+        });
     }
 
     connect() {
+        console.log("Connect");
+        let self = this;
         let promise = new Promise((resolve, reject) => {
-            let mongoDbUrl = "mongodb://192.168.50.50:27017/myproject";
-            mongoClient.connect(mongoDbUrl, (error, db) => {
-                resolve(db);
-            });
+            let connect = () => {
+                let mongoDbUrl = self.mongoDbUrl;
+                mongoClient.connect(mongoDbUrl, (error, db) => {
+                    console.log(`Connected to ${self.mongoDbUrl}`);
+                    resolve(db);
+                });
+            };
+
+            let connecting = true;
+            while (connecting) {
+                let tryConnect = () => {
+                    console.log(`Trying to connect to ${self.mongoDbUrl}`);
+                    if (self.mongoDbUrl) {
+                        connect();
+                        connecting = false;
+                    }
+                };
+
+                tryConnect();
+
+                if (!connecting) break;
+
+                setTimeout(tryConnect,500);
+            }
         });
         return promise;
     }
 
     save(quiz) {
-        console.log("Save quiz: "+JSON.stringify(quiz));
+        console.log("Save quiz: " + JSON.stringify(quiz));
         this.connect().then(db => {
             let quizesCollection = db.collection("Quizes");
             quiz._id = quiz.id;
