@@ -20,7 +20,7 @@
 
   <Resources>
     <Endpoints>
-        <Endpoint Name="WebPort" Protocol="http" Port="3000" />
+        <Endpoint Name="WebPort" Type="Input" Protocol="http" Port="3000" />
     </Endpoints>
   </Resources>     
    

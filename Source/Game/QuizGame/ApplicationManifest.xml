@@ -9,9 +9,6 @@
    
    <ServiceManifestImport>
       <ServiceManifestRef ServiceManifestName="WebPkg" ServiceManifestVersion="1.0.0" />
-      <Policies>
-        <EndpointBindingPolicy EndpointRef="WebPort"/>
-      </Policies>
    </ServiceManifestImport>
 
    <ServiceManifestImport>
