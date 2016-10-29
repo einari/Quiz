@@ -11,7 +11,7 @@ export function staticContentPipeline(stream) {
 }
 
 gulp.task("staticContent", () => {
-    var stream = gulp.src(config.paths.content,{base:config.paths.applicationSourceDir});
+    var stream = gulp.src(config.paths.content,{base:config.paths.sourceDir});
     staticContentPipeline(stream);
     return stream;
 });
