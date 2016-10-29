@@ -6,6 +6,7 @@ WORKDIR /app
 # Add application content
 ADD package.json /app
 ADD ./wwwroot/. /app
+ADD ./jspm_packages/. /app
 ADD ./node_modules/. /app/node_modules
 
 # Expose and run
