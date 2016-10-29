@@ -40,6 +40,12 @@ class paths {
     get content() {
         return [
             `${this.rootDir}/jspm_packages/**/*`,
+            `${this.rootDir}/jspm_packages/system.js`,
+            `${this.rootDir}/jspm_packages/system.js.map`,
+            `${this.rootDir}/jspm_packages/system.src.js`,
+            `${this.rootDir}/jspm_packages/system-polyfills.js`,
+            `${this.rootDir}/jspm_packages/system-polyfills.js.map`,
+            `${this.rootDir}/jspm_packages/system-polyfills.src.js`,
             `${this.rootDir}/Scripts/**/*`,
             `${this.sourceDir}/jspm.config.js`,
             `${this.sourceDir}/**/*.jpg`,
