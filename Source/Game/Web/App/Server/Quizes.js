@@ -1,5 +1,5 @@
 import { quizMessages } from "./QuizMessages";
-import { namingService } from "./NamingService"
+import { namingService } from "./NamingService";
 import mongoClient from "mongodb";
 
 export default class Quizes {
