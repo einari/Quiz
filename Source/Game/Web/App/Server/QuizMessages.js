@@ -26,7 +26,7 @@ class QuizMessages {
         this.attemptScored = new Event();
 
         namingService.resolveEndpoint("QuizCommon", "QuizCommon/Messaging", "MessagingPort").then(endpoint => {
-            amqp.connect("amqp://192.168.50.50", (error, connection) => {
+            amqp.connect(`amqp://${endpoint}`, (error, connection) => {
                 console.log("Connected");
                 let channel = connection.createChannel((e, channel) => {
                     let exchangeName = "events";
