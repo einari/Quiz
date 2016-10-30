@@ -1,4 +1,6 @@
 import {quizMessages} from "./QuizMessages";
+import {namingService} from "./NamingService";
+
 import pg from "pg";
 
 export default class Quizes {
@@ -31,16 +33,18 @@ export default class Quizes {
     }
 
     connect() {
-        var config = {
-            user: "postgres",
-            password: "mysecretpassword",
-            database: "postgres",
-            host: "192.168.50.50"
-        };
         let promise = new Promise((resolve, reject) => {
-            var pool = new pg.Pool(config);
-            pool.connect((error, client, done) => {
-                resolve(pool, client);
+            namingService.resolveEndpoint("QuizAdministration", "QuizAdministration/Data", "PostgreSQLPort").then(endpoint => {
+                var config = {
+                    user: "postgres",
+                    password: "mysecretpassword",
+                    database: "postgres",
+                    host: endpoint
+                };
+                var pool = new pg.Pool(config);
+                pool.connect((error, client, done) => {
+                    resolve(pool, client);
+                });
             });
         });
         return promise;
