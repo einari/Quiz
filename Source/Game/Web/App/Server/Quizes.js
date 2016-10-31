@@ -15,8 +15,8 @@ export default class Quizes {
         });
 
         self.mongoDbUrl = null;
-        namingService.resolveEndpoint("QuizGame", "QuizGame/Data", "MongoAccessPort").then(endpoint => {
-            self.mongoDbUrl = `mongodb://${endpoint}/myproject`;
+        namingService.resolveEndpoint("QuizGame", "QuizGame/Data", "MongoProcessPort").then(endpoint => {
+            self.mongoDbUrl = `mongodb://${endpoint}/quiz`;
             console.log(`Mongo url ${self.mongoDbUrl}`);
         });
     }
@@ -28,7 +28,7 @@ export default class Quizes {
             let connect = () => {
                 let mongoDbUrl = self.mongoDbUrl;
                 mongoClient.connect(mongoDbUrl, (error, db) => {
-                    console.log(`Connected to ${self.mongoDbUrl}`);
+                    console.log(`Connected to ${self.mongoDbUrl} - ${error} - ${db}`);
                     resolve(db);
                 });
             };
