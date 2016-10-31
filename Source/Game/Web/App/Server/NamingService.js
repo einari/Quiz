@@ -2,6 +2,7 @@ import http from "http";
 
 // Based on https://msdn.microsoft.com/en-us/library/azure/dn707638.aspx
 
+
 export default class NamingService {
     constructor() {
         this.host = process.env.Fabric_NodeIPOrFQDN || "192.168.50.50";
