@@ -83,7 +83,7 @@ SystemJS.config({
         "html": "github:Hypercubed/systemjs-plugin-html@0.0.8",
         "knockout": "github:knockout/knockout@3.4.0",
         "socket.io": "npm:socket.io@1.5.1",
-        "socket.io-client": "npm:socket.io-client@1.5.1",
+        "socket.io-client": "github:socketio/socket.io-client@1.5.1/socket.io.js",
         "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
         "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
         "tls": "github:jspm/nodelibs-tls@0.2.0-alpha",
