@@ -16,7 +16,6 @@ ADD ./jspm_packages/system-polyfills.js.map /app/jspm_packages/system-polyfills.
 ADD ./jspm_packages/system-polyfills.src.js /app/jspm_packages/system-polyfills.src.js
 ADD ./node_modules/. /app/node_modules
 
-
 # Expose and run
-EXPOSE 3000
+EXPOSE 3002
 CMD ["node", "Server/app.js"]
