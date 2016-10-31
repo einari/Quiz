@@ -43,6 +43,6 @@ io.on("connection", socket => {
 
 
 console.log("Start server");
-server.listen(3000, () => {
-    console.log("Running on port 3000");
+server.listen(3002, () => {
+    console.log("Running on port 3002");
 });

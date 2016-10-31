@@ -17,7 +17,7 @@
 
    <Policies>
         <ContainerHostPolicies CodePackageRef="Web.code">
-            <PortBinding ContainerPort="3000" EndpointRef="WebPort"/>
+            <PortBinding ContainerPort="3002" EndpointRef="WebPort"/>
         </ContainerHostPolicies>
         <ContainerHostPolicies CodePackageRef="Data.code">
             <PortBinding ContainerPort="27017" EndpointRef="MongoProcessPort"/>
