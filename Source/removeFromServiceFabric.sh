@@ -4,7 +4,7 @@ pushd ./Common
 (exec ./uninstall.sh)
 popd
 
-pushd ./Aminidstration
+pushd ./Administration
 (exec ./uninstall.sh)
 popd
 
