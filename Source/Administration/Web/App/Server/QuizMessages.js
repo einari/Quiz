@@ -1,3 +1,4 @@
+import {namingService} from "./NamingService";
 import amqp from "amqplib/callback_api";
 
 class QuizMessages {
