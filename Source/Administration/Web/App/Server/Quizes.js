@@ -34,14 +34,20 @@ export default class Quizes {
 
     connect() {
         let promise = new Promise((resolve, reject) => {
+            
             namingService.resolveEndpoint("QuizAdministration", "QuizAdministration/Data", "PostgreSQLPort").then(endpoint => {
-                var config = {
+                let endpointAndPort = endpoint.split(':');
+                let host = endpointAndPort[0];
+
+                let config = {
                     user: "postgres",
                     password: "mysecretpassword",
                     database: "postgres",
-                    host: endpoint
+                    host: host
                 };
-                var pool = new pg.Pool(config);
+
+                console.log(`Connect to PostgreSQL on : ${endpoint}`);
+                let pool = new pg.Pool(config);
                 pool.connect((error, client, done) => {
                     resolve(pool, client);
                 });
