@@ -4,7 +4,7 @@ pushd ./Common
 (exec ./install.sh)
 popd
 
-pushd ./Aminidstration
+pushd ./Administration
 (exec ./install.sh)
 popd
 
