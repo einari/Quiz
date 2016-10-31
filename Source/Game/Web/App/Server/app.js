@@ -6,7 +6,6 @@ import Attempts from "./Attempts";
 import bodyParser from "body-parser";
 import socketio from "socket.io";
 import {quizMessages} from "./QuizMessages";
-import {namingService} from "./NamingService"
 
 let app = express();
 let server = http.Server(app);
